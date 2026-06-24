@@ -75,6 +75,8 @@ Baza danych SQLite przechowuje:
 }
 
 
+---
+
 ##  Screeny
 
 Lista filmów
