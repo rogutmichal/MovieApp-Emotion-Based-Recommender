@@ -73,3 +73,18 @@ Baza danych SQLite przechowuje:
     "MovieDb": "TWÓJ_KLUCZ_API"
   }
 }
+
+
+##  Screeny
+
+Lista filmów
+<img width="1912" height="932" alt="image" src="https://github.com/user-attachments/assets/b01d0d79-0814-4b3a-9376-1723be76579e" />
+
+
+Rekomandacje
+<img width="1882" height="776" alt="image" src="https://github.com/user-attachments/assets/31434f28-24dc-4a3f-bc6b-f567cfe8771e" />
+
+
+
+
+
