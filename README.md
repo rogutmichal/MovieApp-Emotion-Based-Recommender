@@ -64,18 +64,7 @@ Baza danych SQLite przechowuje:
 
 ---
 
-##  Uruchomienie
 
-1. Skonfiguruj plik `appsettings.json` z kluczem API do TMDb:
-```json
-{
-  "ApiKeys": {
-    "MovieDb": "TWÓJ_KLUCZ_API"
-  }
-}
-
-
----
 
 ##  Screeny
 
@@ -88,5 +77,18 @@ Rekomandacje
 
 
 
+---
 
+##  Uruchomienie
+
+Skonfiguruj plik `appsettings.json` z kluczem API do TMDb:
+```json
+{
+  "ApiKeys": {
+    "MovieDb": "TWÓJ_KLUCZ_API"
+  }
+}
+
+
+---
 
