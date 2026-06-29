@@ -1,23 +1,24 @@
-#  MovieApp – Rekomendacje filmowe oparte na emocjach
+# MovieApp – Emotion-Based Movie Recommendation System
 
-MovieApp to aplikacja w języku C# wykorzystująca **ML.NET** i SQLite do rekomendowania filmów użytkownikom na podstawie analizy emocji w recenzjach. System łączy dane o ocenach użytkowników, emocjonalne profile filmów oraz teksty recenzji, aby dostarczyć spersonalizowane rekomendacje.
-
----
-
-##  Funkcjonalności
-
-- Pobieranie danych o filmach i recenzjach z **The Movie Database API (TMDb)**.
-- Analiza emocji w recenzjach użytkowników przy użyciu wytrenowanego modelu ML.NET.
-- Tworzenie profilu emocjonalnego filmów oraz użytkowników.
-- Obliczanie rekomendacji filmowych na podstawie podobieństwa profili emocjonalnych.
-- Obsługa ocen użytkowników oraz filtrowanie filmów po gatunkach i tytule.
-- Wyświetlanie top rekomendacji w interfejsie aplikacji.
+MovieApp is a C# application using **ML.NET** and SQLite to recommend movies based on emotion analysis of user reviews.  
+The system combines user ratings, emotional movie profiles, and review text analysis to generate personalized recommendations.
 
 ---
 
-##  Model emocji
+## Features
 
-Model analizy emocji rozpoznaje sześć klas emocji w recenzjach:
+- Fetching movie and review data from **The Movie Database API (TMDb)**.
+- Emotion analysis of user reviews using a trained ML.NET model.
+- Building emotional profiles for both movies and users.
+- Generating movie recommendations based on emotional similarity.
+- User rating management with filtering by genre and title.
+- Displaying top recommended movies in the application interface.
+
+---
+
+## Emotion Model
+
+The emotion classification model recognizes six emotion classes in reviews:
 
 - sadness  
 - anger  
@@ -26,69 +27,63 @@ Model analizy emocji rozpoznaje sześć klas emocji w recenzjach:
 - fear  
 - joy  
 
-Model (`emotion_model.zip`) **został wytrenowany w projekcie [emocje](https://github.com/rogutmichal/emocje)** i jest wczytywany w tej aplikacji przy użyciu ML.NET PredictionEngine do klasyfikacji tekstów recenzji.
+The model (`emotion_model.zip`) was trained in the separate project  
+[emocje](https://github.com/rogutmichal/emocje) and is loaded in this application using ML.NET `PredictionEngine` for text classification.
 
-**Do treningu modelu użyto zbioru danych:** [Emotions Dataset for NLP na Kaggle](https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp).
-
----
-
-##  Struktura bazy danych
-
-Baza danych SQLite przechowuje:
-
-- **Movie** – dane o filmach (tytuł, opis, gatunek, data premiery, popularność, ścieżka do plakatu).  
-- **Review** – recenzje filmów wraz z top 6 emocjami i wynikami predykcji.  
-- **User** – dane o użytkownikach (ID, nazwa, rola).  
-- **Rating** – oceny filmów przypisane do użytkowników.
+**Dataset used for training:**  
+[Emotions Dataset for NLP (Kaggle)](https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp)
 
 ---
 
-##  Proces rekomendacji
+## Database Structure
 
-1. Pobranie wszystkich filmów, recenzji i ocen użytkownika z bazy danych.
-2. Analiza recenzji i przypisanie wartości emocjonalnych do każdego filmu.
-3. Obliczenie profilu emocjonalnego użytkownika na podstawie ocen i emocji filmów.
-4. Obliczenie wag dla poszczególnych emocji w rekomendacjach.
-5. Porównanie profilu użytkownika z profilem emocjonalnym filmów za pomocą **similarity score (Cosine Similarity)**.
-6. Wyświetlenie top rekomendowanych filmów w interfejsie.
+The SQLite database stores:
 
----
-
-##  Technologie
-
-- **C# / .NET MAUI** – interfejs użytkownika i logika aplikacji.
-- **ML.NET** – analiza emocji w recenzjach.
-- **SQLite** – lokalna baza danych filmów, recenzji, użytkowników i ocen.
-- **TMDb API** – pobieranie informacji o filmach i recenzjach.
-- **Newtonsoft.Json** – przetwarzanie danych JSON z API filmów.
+- **Movie** – movie details (title, description, genre, release date, popularity, poster path).  
+- **Review** – movie reviews with predicted emotion scores (top 6 emotions).  
+- **User** – user data (ID, name, role).  
+- **Rating** – user ratings assigned to movies.
 
 ---
 
+## Recommendation Process
 
-
-##  Screeny
-
-Lista filmów
-<img width="1912" height="932" alt="image" src="https://github.com/user-attachments/assets/b01d0d79-0814-4b3a-9376-1723be76579e" />
-
-
-Rekomandacje
-<img width="1882" height="776" alt="image" src="https://github.com/user-attachments/assets/31434f28-24dc-4a3f-bc6b-f567cfe8771e" />
-
-
+1. Load all movies, reviews, and user ratings from the database.
+2. Analyze reviews and assign emotional scores to each movie.
+3. Build a user emotional profile based on rated movies and associated emotions.
+4. Compute emotion weights for recommendation scoring.
+5. Compare user and movie profiles using **cosine similarity**.
+6. Return top-ranked movie recommendations.
 
 ---
 
-##  Uruchomienie
+## Technologies
 
-Skonfiguruj plik `appsettings.json` z kluczem API do TMDb:
+- **C# / .NET MAUI** – application UI and business logic.
+- **ML.NET** – emotion classification from text.
+- **SQLite** – local storage for movies, users, reviews, and ratings.
+- **TMDb API** – movie metadata and review data source.
+- **Newtonsoft.Json** – JSON parsing.
+
+---
+
+## Screenshots
+
+### Movie list
+<img width="1912" height="932" src="https://github.com/user-attachments/assets/b01d0d79-0814-4b3a-9376-1723be76579e" />
+
+### Recommendations
+<img width="1882" height="776" src="https://github.com/user-attachments/assets/31434f28-24dc-4a3f-bc6b-f567cfe8771e" />
+
+---
+
+## Run Instructions
+
+Configure your `appsettings.json` file with a TMDb API key:
+
 ```json
 {
   "ApiKeys": {
-    "MovieDb": "TWÓJ_KLUCZ_API"
+    "MovieDb": "YOUR_API_KEY"
   }
 }
-
-
----
-
