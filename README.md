@@ -28,7 +28,7 @@ The emotion classification model recognizes six emotion classes in reviews:
 - joy  
 
 The model (`emotion_model.zip`) was trained in the separate project  
-[emocje](https://github.com/rogutmichal/emocje) and is loaded in this application using ML.NET `PredictionEngine` for text classification.
+[emocje](https://github.com/rogutmichal/emotion-prediction-model) and is loaded in this application using ML.NET `PredictionEngine` for text classification.
 
 **Dataset used for training:**  
 [Emotions Dataset for NLP (Kaggle)](https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp)
